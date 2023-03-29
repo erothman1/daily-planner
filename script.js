@@ -17,7 +17,7 @@ $(function () {
       var button = $(event.target)
       
       var savedTodos = {
-        time: "time",
+        time: button.siblings(0).val(),
         todo: button.prev().val(),
       }
 
@@ -36,5 +36,13 @@ $(function () {
     // attribute of each time-block be used to do this?
     //
     // TODO: Add code to display the current date in the header of the page.
+    function currentTime() {
+      setInterval(function() {
+      $('#currentDay').text(dayjs().format('MMM DD, YYYY hh:mm:ss A'))
+      }, 1000)
+      
+  }
+  currentTime()
+
   });
   
