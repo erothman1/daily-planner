@@ -12,18 +12,23 @@ $(function () {
     buttonListEl = $(".saveBtn")
 
     buttonListEl.on("click", function(event) {
-      console.log("hi")
       
       var button = $(event.target)
       
       var savedTodos = {
-        time: button.siblings(0).val(),
+        time: button.parent().attr("id"),
         todo: button.prev().val(),
       }
 
-      console.log(savedTodos)
+      var storedTodos = JSON.parse(localStorage.getItem("savedTodos")) || []
+
+      storedTodos.push(savedTodos)
+
+      localStorage.setItem("savedTodos", JSON.stringify(storedTodos))
 
     })
+
+    //need to make todos stay on page when page is reloaded 
 
     // TODO: Add code to apply the past, present, or future class to each time
     // block by comparing the id to the current hour. HINTS: How can the id
@@ -31,6 +36,8 @@ $(function () {
     // past, present, and future classes? How can Day.js be used to get the
     // current hour in 24-hour time?
     //
+    militaryTime = dayjs()
+
     // TODO: Add code to get any user input that was saved in localStorage and set
     // the values of the corresponding textarea elements. HINT: How can the id
     // attribute of each time-block be used to do this?
@@ -38,11 +45,11 @@ $(function () {
     // TODO: Add code to display the current date in the header of the page.
     function currentTime() {
       setInterval(function() {
-      $('#currentDay').text(dayjs().format('MMM DD, YYYY hh:mm:ss A'))
+      $('#currentDay').text(dayjs().format('MMMM DD, YYYY hh:mm:ss A'))
       }, 1000)
-      
-  }
-  currentTime()
+      }
+    
+    currentTime()
 
   });
   
