@@ -46,12 +46,16 @@ $(function () {
     for (let  i = 0;  i < container.length;  i++) {
 
       var hourDiv = container[i]
-      console.log($(hourDiv).data("hour"))
 
-      if ($(hourDiv).data("hour") < timeNow) {
+      console.log(typeof $(hourDiv).data("hour"))
+      console.log(typeof timeNow)
+
+      intTimeNow = parseInt(timeNow)
+    
+      if ($(hourDiv).data("hour") < intTimeNow) {
         blockBg.attr("class", "past")
 
-      } else if ($(hourDiv).data("hour") > timeNow) {
+      } else if ($(hourDiv).data("hour") > intTimeNow) {
         blockBg.attr("class", "future")
 
       } else {
