@@ -36,7 +36,62 @@ $(function () {
     // past, present, and future classes? How can Day.js be used to get the
     // current hour in 24-hour time?
     //
-    militaryTime = dayjs()
+
+  
+    timeNow = dayjs().format("H")
+
+    container = $(".container-lg")
+
+    hourIdEl = container.children().data("hour")
+
+    blockBg = $("textarea")
+
+    if (hourIdEl < timeNow) {
+      blockBg.attr("class", "past")
+    } else if (hourIdEl > timeNow) {
+      blockBg.attr("class", "future")
+    }else {
+      blockBg.attr("class", "present")
+    }
+
+    console.log(hourIdEl)
+
+    // for (var i = 0; hourIdEl.length; i++) {
+    //   if (hourIdEl[i] === timeNow) {
+    //     blockBg.attr("class", "present")
+    //     console.log(hourIdEl[i])
+    //   } else if (hourIdEl[i] < timeNow) {
+    //     blockBg.attr("class", "past")
+    //     console.log(hourIdEl[i])
+    //   } else {
+    //     blockBg.attr("class", "future")
+    //     console.log(hourIdEl[i])
+    //   }
+    // }
+
+
+
+    // timeArray = [$("#hour-9"), $("#hour-10"), $("#hour-11"), $("#hour-12"), $("#hour-13"), $("#hour-14"), $("#hour-15"), $("#hour-16"), $("#hour-17")]
+
+
+    // //variable for divs with class="time-block"
+    // timeBlock = $(".time-block")
+
+    // for (var i = 0; i < timeArray.length; i++) {
+    //   if (timeArray[i].text() === timeNow) {
+    //     timeArray[i].attr("class", "present")
+    //   } else if (timeArray[i].text() < timeNow) {
+    //     timeArray[i].attr("class", "past")
+    //   } else {
+    //     timeArray[i].attr("class", "future")
+    //   }
+    // }
+
+    // console.log(dayjs().format("hA"))
+    
+
+
+    
 
     // TODO: Add code to get any user input that was saved in localStorage and set
     // the values of the corresponding textarea elements. HINT: How can the id
@@ -51,5 +106,4 @@ $(function () {
     
     currentTime()
 
-  });
-  
+  })
