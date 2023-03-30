@@ -35,24 +35,55 @@ $(function () {
     // current hour in 24-hour time?
     //
 
-    timeNow = dayjs().format("H")
+    var timeNow = dayjs().format("H")
 
-    container = $(".container-lg")
+    console.log(timeNow)
+
+    var container = $(".container-lg").children()
+
+    var blockBg = $(".description")
+
+    for (let  i = 0;  i < container.length;  i++) {
+
+      var hourDiv = container[i]
+      console.log($(hourDiv).data("hour"))
+
+      if ($(hourDiv).data("hour") < timeNow) {
+        blockBg.attr("class", "past")
+
+      } else if ($(hourDiv).data("hour") > timeNow) {
+        blockBg.attr("class", "future")
+
+      } else {
+        blockBg.attr("class", "present")
+      }
+    }
 
     hourIdEl = container.children().data("hour")
 
-    blockBg = $(".description")
+    
 
-    if (hourIdEl < timeNow) {
-      blockBg.attr("class", "past")
+    // if (hourIdEl < timeNow) {
+    //   blockBg.attr("class", "past")
 
-    } else if (hourIdEl > timeNow) {
-      blockBg.attr("class", "future")
+    // } else if (hourIdEl > timeNow) {
+    //   blockBg.attr("class", "future")
 
-    }else {
-      blockBg.attr("class", "present")
-    }
+    // }else {
+    //   blockBg.attr("class", "present")
+    // }
 
+    // for (var i = 0; i < hourIdEl.length; i++) {
+    //   if (hourIdEl.eq(i) < timeNow) {
+    //     blockBg.attr("class", "past")
+  
+    //   } else if (hourIdEl.eq(i) > timeNow) {
+    //     blockBg.attr("class", "future")
+  
+    //   }else {
+    //     blockBg.attr("class", "present")
+    //   }
+    // }
 
     // TODO: Add code to get any user input that was saved in localStorage and set
     // the values of the corresponding textarea elements. HINT: How can the id
