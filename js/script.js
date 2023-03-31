@@ -14,17 +14,22 @@ $(function () {
     buttonListEl.on("click", function(event) {
       
       var button = $(event.target)
+
+      var todo = button.prev().val()
+      var time = button.parent().attr("id")
+
+      localStorage.setItem(time, todo)
       
-      var savedTodos = {
-        time: button.parent().attr("id"),
-        todo: button.prev().val(),
-      }
+      // var savedTodos = {
+      //   time: button.parent().attr("id"),
+      //   todo: button.prev().val(),
+      // // }
 
-      var storedTodos = JSON.parse(localStorage.getItem("savedTodos")) || []
+      // var storedTodos = JSON.parse(localStorage.getItem("savedTodos")) || []
 
-      storedTodos.push(savedTodos)
+      // storedTodos.push(savedTodos)
 
-      localStorage.setItem("savedTodos", JSON.stringify(storedTodos))
+      // localStorage.setItem("savedTodos", JSON.stringify(storedTodos))
 
     })
 
@@ -37,11 +42,10 @@ $(function () {
 
     var timeNow = parseInt(dayjs().format("H"))
 
-
     $(".time-block").each(function() {
+
       var hourDiv = parseInt($(this).attr("id"))
       
-
       if (hourDiv < timeNow) {
         $(this).addClass("past")
 
@@ -50,7 +54,6 @@ $(function () {
 
       } else {
         $(this).addClass("future")
-        console.log(hourDiv)
       }
     })
 
@@ -60,9 +63,6 @@ $(function () {
     // the values of the corresponding textarea elements. HINT: How can the id
     // attribute of each time-block be used to do this?
     //
-    for (var i = 9; i < 17; i ++) {
-      
-    }
 
     // TODO: Add code to display the current date in the header of the page.
 
