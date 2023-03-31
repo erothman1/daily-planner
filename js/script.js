@@ -35,73 +35,35 @@ $(function () {
     // current hour in 24-hour time?
     //
 
-    function colorHour() {
-      var timeNow = dayjs().format("H")
-  
-      var container = $(".container-lg").children()
-  
-      var blockBg = $(".description")
-  
-      for (let  i = 0;  i < container.length;  i++) {
-  
-        var containerLoop = container[i]
-        var hourDiv = $(containerLoop).data("hour")
-        intHourDiv = parseInt(hourDiv)
-        intTimeNow = parseInt(timeNow)
-  
-        console.log(hourDiv < intTimeNow)
-   
-          if (hourDiv < intTimeNow) {
-            //past, purple grey
-            blockBg.css({"background-color": "#e3d1e0"})
-    
-          } else if (hourDiv > intTimeNow) {
-            //future, blue
-            blockBg.css({"background-color": "#9dc3f5"})
-    
-          } else {
-            //present, green 
-            blockBg.css({"background-color": "#bdf588"})
-          }
-    }
-  }
+    var timeNow = parseInt(dayjs().format("H"))
 
-    colorHour()
 
-    // var timeNow = dayjs().format("H")
-    // var timeNow = 14
+    $(".time-block").each(function() {
+      var hourDiv = parseInt($(this).attr("id"))
+      
 
-    // var container = $(".container-lg").children()
+      if (hourDiv < timeNow) {
+        $(this).addClass("past")
 
-    // var blockBg = $(".description")
+      } else if (hourDiv === timeNow) {
+        $(this).addClass("present")
 
-    // for (let  i = 0;  i < container.length;  i++) {
+      } else {
+        $(this).addClass("future")
+        console.log(hourDiv)
+      }
+    })
 
-    //   var containerLoop = container[i]
-    //   var hourDiv = $(containerLoop).data("hour")
-    //   intHourDiv = parseInt(hourDiv)
-    //   intTimeNow = parseInt(timeNow)
-
-    //   console.log(hourDiv < intTimeNow)
- 
-    //     if (hourDiv < intTimeNow) {
-    //       //past, purple grey
-    //       blockBg.css({"background-color": "#e3d1e0"})
-  
-    //     } else if (hourDiv > intTimeNow) {
-    //       //future, blue
-    //       blockBg.css({"background-color": "#9dc3f5"})
-  
-    //     } else {
-    //       //present, green 
-    //       blockBg.css({"background-color": "#bdf588"})
-    //     }
 
 
     // TODO: Add code to get any user input that was saved in localStorage and set
     // the values of the corresponding textarea elements. HINT: How can the id
     // attribute of each time-block be used to do this?
     //
+    for (var i = 9; i < 17; i ++) {
+      
+    }
+
     // TODO: Add code to display the current date in the header of the page.
 
     function currentTime() {
