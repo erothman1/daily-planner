@@ -35,59 +35,68 @@ $(function () {
     // current hour in 24-hour time?
     //
 
-    var timeNow = dayjs().format("H")
-
-    console.log(timeNow)
-
-    var container = $(".container-lg").children()
-
-    var blockBg = $(".description")
-
-    for (let  i = 0;  i < container.length;  i++) {
-
-      var hourDiv = container[i]
-
-      console.log(typeof $(hourDiv).data("hour"))
-      console.log(typeof timeNow)
-
-      intTimeNow = parseInt(timeNow)
+    function colorHour() {
+      var timeNow = dayjs().format("H")
+  
+      var container = $(".container-lg").children()
+  
+      var blockBg = $(".description")
+  
+      for (let  i = 0;  i < container.length;  i++) {
+  
+        var containerLoop = container[i]
+        var hourDiv = $(containerLoop).data("hour")
+        intHourDiv = parseInt(hourDiv)
+        intTimeNow = parseInt(timeNow)
+  
+        console.log(hourDiv < intTimeNow)
+   
+          if (hourDiv < intTimeNow) {
+            //past, purple grey
+            blockBg.css({"background-color": "#e3d1e0"})
     
-      if ($(hourDiv).data("hour") < intTimeNow) {
-        blockBg.attr("class", "past")
-
-      } else if ($(hourDiv).data("hour") > intTimeNow) {
-        blockBg.attr("class", "future")
-
-      } else {
-        blockBg.attr("class", "present")
-      }
+          } else if (hourDiv > intTimeNow) {
+            //future, blue
+            blockBg.css({"background-color": "#9dc3f5"})
+    
+          } else {
+            //present, green 
+            blockBg.css({"background-color": "#bdf588"})
+          }
     }
+  }
 
-    hourIdEl = container.children().data("hour")
+    colorHour()
 
-    
+    // var timeNow = dayjs().format("H")
+    // var timeNow = 14
 
-    // if (hourIdEl < timeNow) {
-    //   blockBg.attr("class", "past")
+    // var container = $(".container-lg").children()
 
-    // } else if (hourIdEl > timeNow) {
-    //   blockBg.attr("class", "future")
+    // var blockBg = $(".description")
 
-    // }else {
-    //   blockBg.attr("class", "present")
-    // }
+    // for (let  i = 0;  i < container.length;  i++) {
 
-    // for (var i = 0; i < hourIdEl.length; i++) {
-    //   if (hourIdEl.eq(i) < timeNow) {
-    //     blockBg.attr("class", "past")
+    //   var containerLoop = container[i]
+    //   var hourDiv = $(containerLoop).data("hour")
+    //   intHourDiv = parseInt(hourDiv)
+    //   intTimeNow = parseInt(timeNow)
+
+    //   console.log(hourDiv < intTimeNow)
+ 
+    //     if (hourDiv < intTimeNow) {
+    //       //past, purple grey
+    //       blockBg.css({"background-color": "#e3d1e0"})
   
-    //   } else if (hourIdEl.eq(i) > timeNow) {
-    //     blockBg.attr("class", "future")
+    //     } else if (hourDiv > intTimeNow) {
+    //       //future, blue
+    //       blockBg.css({"background-color": "#9dc3f5"})
   
-    //   }else {
-    //     blockBg.attr("class", "present")
-    //   }
-    // }
+    //     } else {
+    //       //present, green 
+    //       blockBg.css({"background-color": "#bdf588"})
+    //     }
+
 
     // TODO: Add code to get any user input that was saved in localStorage and set
     // the values of the corresponding textarea elements. HINT: How can the id
